@@ -152,6 +152,8 @@ app.init = async () => {
     WHERE rating IN (1, 3, 5) \
     ORDER BY `rating` ASC';
 
+    //IN operator allows you to determine if a value matches any value in a list of values
+
     [rows] = await connection.execute(sql)
     console.log(rows);
     let ratingList = [];
