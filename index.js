@@ -40,6 +40,7 @@ app.init = async () => {
     //**2.** _Isspausdinti, visu grybautoju vardus_
     sql = 'SELECT `name` FROM `gatherer`';
     [rows] = await connection.execute(sql);
+
     //map funkcija sukuria nauja array masyva uzpildydama iskviestais elementais 
     const gathererNames = rows.map(gatherer => gatherer.name);
     console.log(`Grybautojai: ${gathererNames.join(', ')}.`);
@@ -130,6 +131,34 @@ app.init = async () => {
     mushroomsByRating('lt');
     mushroomsByRating('en');
     mushroomsByRating();
+
+    //**9** _Isspausdinti, visus grybus, kuriu ivertinimas geresnis arba lygus 4 zvaigzdutem, isrikiuotus gerejimo tvarka_
+    sql = 'SELECT `rating`, `mushroom` FROM `mushroom`\
+            ORDER BY `rating` ASC';
+    [rows] = await connection.execute(sql);
+    console.log(rows);
+    let mushroomList = [];
+    for (const { rating, mushroom } of rows) {
+        if (rating >= 4) {
+            mushroomList.push(upperName(mushroom));
+        }
+    }
+    console.log(`Grybai: ${mushroomList.join(', ')}.`);
+
+    //**10** _Isspausdinti, visus grybus, kuriu ivertinimas yra viena is nurodytu reiksmiu: 1, 3 arba 5 zvaigzdutem, isrikiuotus gerejimo tvarka_
+
+    sql = 'SELECT `mushroom`, `rating`\
+    FROM `mushroom` \
+    WHERE rating IN (1, 3, 5) \
+    ORDER BY `rating` ASC';
+
+    [rows] = await connection.execute(sql)
+    console.log(rows);
+    let ratingList = [];
+    for (const { mushroom } of rows) {
+        ratingList.push(upperName(mushroom));
+    }
+    console.log(`Grybai: ${ratingList.join(', ')}.`);
 
 }
 app.init();
