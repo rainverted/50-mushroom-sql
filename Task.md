@@ -122,7 +122,7 @@ Grybu krepselio kainos pas grybautoja:
 3) Vardenis - 7 EUR
 ```
 
-**8** _Isspausdinti, kiek nuo geriausiai vertinamu iki blogiausiai vertinamu grybu yra surinkta. Spausdinima turi atlikti funkcija, kuri gauna vieninteli parametra - kalbos pavadinima, pagal kuria reikia sugeneruoti rezultata_
+**8** _Isspausdinti, kiek nuo geriausiai vertinamu iki blogiausiai vertinamu grybu yra surinkta. Spausdinima turi atlikti funkcija (pavadinimu `mushroomsByRating()`), kuri gauna vieninteli parametra - kalbos pavadinima, pagal kuria reikia sugeneruoti rezultata_
 
 lt pvz.:
 
@@ -141,3 +141,11 @@ Mushrooms count by rating:
 4 stars (good) - 7 mushrooms
 3 stars (ok) - 13 mushrooms
 ```
+
+**9** _Isspausdinti, visus grybus, kuriu ivertinimas geresnis arba lygus 4 zvaigzdutem, isrikiuotus gerejimo tvarka_
+
+pvz.: Grybai: Grybas, Grybas, Grybas.
+
+**10** _Isspausdinti, visus grybus, kuriu ivertinimas yra viena is nurodytu reiksmiu: 1, 3 arba 5 zvaigzdutem, isrikiuotus gerejimo tvarka_
+
+pvz.: Grybai: Grybas, Grybas, Grybas.
