@@ -77,6 +77,17 @@ app.init = async () => {
     }
     console.log('');
 
+    // *** ALTERNATIVE WAY - optimisation ***
+    //     sql = 'SELECT `mushroom`, (1000 / `weight`) as amount \
+    //         FROM `mushroom` ORDER BY `mushroom` ASC';
+    // [rows] = await connection.execute(sql);
+
+    // console.log('Grybai:');
+    // i = 0;
+    // for (const item of rows) {
+    //     console.log(`${++i}) ${upName(item.mushroom)} - ${(+item.amount).toFixed(1)}`);
+    // }
+
     //**6.** _Isspausdinti, visu grybautoju krepselyje esanciu grybu kiekius (issirikiuojant pagal grybautojo varda nuo abeceles pradzios link pabaigos)
     sql = 'SELECT `name`, SUM(`count`) as amount\
     FROM `basket` \
