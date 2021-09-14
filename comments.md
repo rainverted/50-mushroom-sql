@@ -1,0 +1,4 @@
+-LEFT JOIN su ON sulyginam, kas skirtingose lentelese yra bendro
+-SUM sudeda pasirinkta parametra(sudeda visus, todel norit issikrti naudojama GROUP BY)
+-GROUP BY grupavimas reiksmiu pagal pasirinkta parametra
+-ORDER BY rykiavimas pagal pasirinkta parametra

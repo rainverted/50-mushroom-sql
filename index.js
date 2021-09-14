@@ -96,11 +96,6 @@ app.init = async () => {
     GROUP BY `basket`.`gatherer_id` \
     ORDER BY `name`';
 
-
-    // su ON sulyginam, kas skirtingose lentelese yra bendro
-    // GROUP BY grupavimas reiksmiu pagal pasirinkta parametra
-    // ORDER BY rykiavimas pagal pasirinkta parametra
-
     [rows] = await connection.execute(sql);
     console.log('Grybu kiekis pas grybautoja:');
     for (gatherer of rows) {
@@ -121,8 +116,27 @@ app.init = async () => {
     [rows] = await connection.execute(sql);
     console.log('Grybu krepselio kainos pas grybautoja:');
     for (gatherer of rows) {
-        console.log(`${++i}) ${upperName(gatherer.name)} - ${+gatherer.cost} EUR`);
+        //dedame + pries gatherer, nes skaicius by default yra stringas
+        console.log(`${++i}) ${upperName(gatherer.name)} - ${(+gatherer.cost).toFixed(2)} EUR`);
     }
+
+    // **ALTERNATIVE WAY** - kiekis x svoris (grmamais) x kaina(EUR/kg) > viska daliname is 1000, kad suma taptu vel kg
+    // sql = 'SELECT `gatherer`.`name`, \
+    //             SUM(`basket`.`count` * `mushroom`.`weight` * `mushroom`.`price` / 1000) as totalPrice \
+    //         FROM `gatherer` \
+    //         LEFT JOIN `basket` \
+    //             ON `gatherer`.`id` = `basket`.`gatherer_id` \
+    //         LEFT JOIN `mushroom` \
+    //             ON `mushroom`.`id` = `basket`.`mushroom_id` \
+    //         GROUP BY `gatherer`.`id` \
+    //         ORDER BY totalPrice DESC';
+    // [rows] = await connection.execute(sql);
+
+    // console.log('Grybu krepselio kainos pas grybautoja:');
+    // i = 0;
+    // for (const item of rows) {
+    //     console.log(`${++i}) ${upName(item.name)} - ${(+item.totalPrice).toFixed(2)} EUR`);
+    // }
 
     //**8** _Isspausdinti, kiek nuo geriausiai vertinamu iki blogiausiai vertinamu grybu yra surinkta. Spausdinima turi atlikti funkcija, kuri gauna vieninteli parametra - kalbos pavadinima, pagal kuria reikia sugeneruoti rezultata
 
